@@ -1,3 +1,3 @@
 export const config = {
-  urlOfBackend: "http://192.168.1.37:7777",
+  urlOfBackend: "https://backend-jbd9.onrender.com",
 };
