@@ -1,0 +1,92 @@
+.authContainer {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.authContainer * {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.authWrapper {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+}
+
+.authBox {
+  background: rgb(243, 242, 242);
+  width: 100%;
+  max-width: 380px;
+  margin: 20px;
+  padding: 28px 22px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.loginForm input[type="text"] {
+  font-family: inherit;
+  border: 1px solid #e1e6ee;
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin: 10px 0;
+  font-size: 14px;
+  color: var(--navy);
+  background: #f4f6fa;
+  width: 90%;
+}
+
+.loginForm input[type="text"]::placeholder {
+  color: #5c6b85;
+}
+
+.loginForm input[type="text"]:focus {
+  outline: none;
+  border-color: var(--botton);
+  background: rgb(243, 242, 242);
+}
+
+.loginForm input[type="submit"] {
+  font-family: inherit;
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+  background: var(--botton);
+  color: rgb(243, 242, 242);
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.loginForm input[type="submit"]:hover {
+  background: var(--background2);
+}
+
+.authBox h4 {
+  display: inline;
+  margin: 3px;
+}
+
+.authBox h2 {
+  margin: 0 auto;
+}
+
+.authBox h4 a {
+  width: 55px;
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.authBox h4 a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}

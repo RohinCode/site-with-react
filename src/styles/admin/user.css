@@ -1,0 +1,280 @@
+.result {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.users-page .user {
+  margin-top: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.users-page .user .top {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.users-page .user .top > div {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.users-page .user .top div .user-name {
+  display: flex;
+  align-items: center;
+  height: 45px;
+}
+.users-page .user .top div .user-name h5 {
+  padding: 10px;
+}
+
+.users-page .user .top div .status {
+  margin: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.users-page .user .top div .status h6 {
+  color: #888;
+}
+
+.users-page .user .top div .status h6 {
+  padding: 1px 3px;
+}
+
+.users-page .user .top div i {
+  background-color: var(--primary);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.users-page .user .top .email {
+  margin: 0;
+  color: #888;
+  font-size: 13px;
+  padding-top: 10px;
+}
+.users-page .user .top div h6 {
+  margin: 0;
+  color: rgb(41, 41, 41);
+  font-weight: bold;
+}
+
+.users-page .user .top h5 {
+  color: rgb(41, 41, 41);
+}
+
+.users-page .user .bottom {
+  padding: 10px;
+}
+
+.users-page .user .bottom button {
+  cursor: pointer;
+  margin: 5px 15px;
+  font-family: inherit;
+}
+
+.users-page .user .bottom .delete-user {
+  background-color: #eb1212;
+  color: white;
+  outline: none;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.users-page .user .bottom .delete-user-from-admin {
+  background-color: #e9d30a;
+  outline: none;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.users-page .user .bottom .upgrate-to-admin {
+  background-color: #4acf0c;
+  outline: none;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.searchBox {
+  text-align: center;
+}
+
+.searchBox input {
+  font-family: inherit;
+  width: 270px;
+  max-width: 75%;
+  height: 50px;
+  padding: 0px 10px 5px 0;
+  background: #ffffff;
+  border: 2px solid #e1e7ef;
+  border-radius: 0 10px 10px 0;
+  box-sizing: border-box;
+  box-shadow: 0 8px 25px #292b2c14;
+  transition:
+    width 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.searchBox input:focus-within {
+  outline: none;
+  width: 300px;
+  border-color: var(--primary);
+
+  box-shadow:
+    0 12px 30px rgba(21, 22, 22, 0.14),
+    0 0 0 4px rgba(20, 20, 20, 0.07);
+}
+
+.searchBox button {
+  font-family: inherit;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  background: var(--primary);
+
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  border-radius: 5px 0 0 5px;
+}
+.searchBox button::before {
+  display: block;
+  margin-top: 17px;
+}
+
+.result {
+  margin-top: 25px;
+}
+
+.user-menu {
+  display: flex;
+  justify-content: space-between;
+  background-color:var(--botton);
+  padding: 10px;
+  border-radius: 6px;
+  width: fit-content;
+  margin-bottom: 40px;
+}
+
+.user-menu .btns {
+  font-size: 15px;
+  font-family: inherit;
+  margin: 0 15px;
+  outline: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  color: #ffffffa6;
+  background: none;
+}
+
+.user-menu .btns.active {
+  background-color: var(--primary);
+  color:white;
+  border-radius: 4px;
+}
+
+.editProduct .result-of-search-product .product-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin: 25px;
+}
+
+.editProduct .result-of-search-product .product-actions button {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 13px;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* ذخیره */
+.editProduct .product-actions .save-btn {
+  background:var(--navy);
+  color: white;
+}
+
+.editProduct .product-actions .save-btn:hover {
+  background: var(--primary);
+}
+
+/* ویرایش */
+.editProduct .product-actions .edit-btn {
+  background: #edf2f8;
+  color:  var(--primary);
+}
+
+.editProduct .product-actions .edit-btn:hover {
+  background: #dce7f4;
+}
+
+/* حذف */
+.editProduct .product-actions .delete-btn {
+  background: #fff1f1;
+  color: #c03939;
+}
+
+.editProduct .product-actions .delete-btn:hover {
+  background: #ffe0e0;
+}
+
+/* ریسپانسیو */
+@media (max-width: 650px) {
+  .editProduct .result-of-search-product .product-actions {
+    width: 100%;
+  }
+
+  .editProduct .result-of-search-product .product-actions button {
+    flex: 1;
+  }
+}
+
+@media (max-width: 380px) {
+  .editProduct .result-of-search-product .product-actions {
+    flex-direction: column;
+  }
+
+  .editProduct .result-of-search-product .product-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 366px) {
+  .users-page .user .top .email {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 321px) {
+  .users-page .user .top .email {
+    display: none;
+  }
+}

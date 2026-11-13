@@ -1,0 +1,243 @@
+/* =========================
+   Loading Product Page
+========================= */
+
+.loading-product-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 30px 25px;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+  gap: 50px;
+  align-items: start;
+
+  direction: rtl;
+}
+
+/* =========================
+   Product Image
+========================= */
+
+.loading-product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: 300px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: white;
+  border: 1px solid #e5eaf0;
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(40, 83, 146, 0.08);
+
+  overflow: hidden;
+}
+
+.loading-product-image > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================
+   Product Info
+========================= */
+
+.loading-product-info {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* عنوان */
+
+.loading-product-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+/* امتیاز */
+
+.loading-product-rating {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+/* توضیحات */
+
+.loading-product-details {
+  width: 100%;
+  margin-bottom: 30px;
+  line-height: 2;
+}
+
+.loading-product-details > span {
+  display: block;
+  margin-bottom: 9px;
+}
+
+.loading-product-details-short {
+  width: 100%;
+}
+
+/* قیمت */
+
+.loading-product-price {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+/* موجودی */
+
+.loading-product-quantity {
+  display: flex;
+  align-items: center;
+  margin: 0 16px 21px;
+}
+
+/* دکمه خرید */
+
+.loading-product-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+/* =========================
+   Comments
+========================= */
+
+.loading-product-comments {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.loading-product-comments > span {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.loading-product-comment {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+
+  border: 1px solid #e5eaf0;
+  border-radius: 10px;
+  background-color: white;
+}
+
+/* اطلاعات بالای نظر */
+
+.loading-product-comment-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.loading-product-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* متن نظر */
+
+.loading-product-comment-text {
+  width: 100%;
+  line-height: 1.8;
+}
+
+.loading-product-comment-text > span {
+  display: block;
+  margin-bottom: 7px;
+}
+
+/* =========================
+   Write Comment
+========================= */
+
+.loading-product-write-comment {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.loading-product-comment-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 768px) {
+  .loading-product-page {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+    margin: 20px auto;
+    padding: 20px 15px;
+  }
+
+  .loading-product-image {
+    position: static;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+  }
+
+  .loading-product-info {
+    width: 100%;
+  }
+
+  .loading-product-title {
+    margin-top: 5px;
+  }
+
+  .loading-product-details {
+    margin-bottom: 20px;
+  }
+
+  .loading-product-comment {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .loading-product-page {
+    padding: 15px 10px;
+  }
+
+  .loading-product-comment-top {
+    flex-wrap: wrap;
+  }
+
+  .loading-product-comment-actions {
+    gap: 8px;
+  }
+}

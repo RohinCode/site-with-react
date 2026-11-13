@@ -1,0 +1,91 @@
+.menu-skeleton {
+  direction: rtl;
+}
+
+/* افکت درخشش */
+.menu-skeleton .skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #eceef2;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.menu-skeleton .skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    transparent 100%
+  );
+  transform: translateX(100%);
+  animation: menuSkeletonShimmer 1.4s infinite;
+}
+
+/* آواتار */
+.menu-skeleton .skeleton-avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+}
+
+/* نام کاربر */
+.menu-skeleton .skeleton-username {
+  width: 120px;
+  height: 17px;
+  margin: 0 auto 12px;
+}
+
+/* نقش کاربر */
+.menu-skeleton .skeleton-role {
+  width: 70px;
+  height: 13px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+/* آیتم‌های منو */
+.menu-skeleton-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  margin-top: 8px;
+  border-radius: 10px;
+}
+
+/* آیکون */
+.menu-skeleton .skeleton-menu-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+}
+
+/* متن */
+.menu-skeleton .skeleton-menu-text {
+  width: 115px;
+  height: 14px;
+}
+
+/* خروج */
+.menu-skeleton .logout-skeleton {
+  margin-top: 20px;
+}
+
+/* انیمیشن */
+@keyframes menuSkeletonShimmer {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* کاهش حرکت برای دسترس‌پذیری */
+@media (prefers-reduced-motion: reduce) {
+  .menu-skeleton .skeleton::after {
+    animation: none;
+  }
+}

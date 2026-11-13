@@ -1,0 +1,52 @@
+.shopping-card-skeleton {
+  direction: rtl;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+  margin: 40px 15px;
+  border-radius: 2px;
+  padding: 5px;
+  max-width: 450px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.shopping-card-skeleton .skeleton-img-sec {
+
+ padding: 50px;
+}
+
+.shopping-card-skeleton .skeleton-hot-offer {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.shopping-card-skeleton .skeleton-stars {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+
+.shopping-card-skeleton .skeleton-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 6px 15px;
+  border-top: 1px solid #e3e9f3;
+  min-height: 45px;
+}
+
+.shopping-card-skeleton .skeleton-price {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.shopping-card-skeleton .skeleton-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

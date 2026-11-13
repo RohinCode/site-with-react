@@ -1,0 +1,136 @@
+.info-skeleton {
+  width: 100%;
+  animation: skeleton-appear 0.35s ease-out;
+}
+
+.info-skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.info-skeleton-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e9ebf0;
+  border-radius: 8px;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.75),
+    transparent
+  );
+  animation: skeleton-shimmer 1.4s infinite;
+}
+
+.skeleton-title {
+  width: 145px;
+  height: 25px;
+  border-radius: 6px;
+}
+
+.skeleton-button {
+  width: 90px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.info-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 28px;
+}
+
+.info-skeleton-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  min-width: 0;
+  border: 1px solid #edf0f4;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.skeleton-label {
+  width: 65px;
+  height: 13px;
+}
+
+.skeleton-value {
+  width: 72%;
+  max-width: 180px;
+  height: 19px;
+}
+
+.info-skeleton-item:nth-child(2) .skeleton-value {
+  width: 90%;
+}
+
+.info-skeleton-item:nth-child(3) .skeleton-value {
+  width: 60%;
+}
+
+.info-skeleton-item:nth-child(4) .skeleton-value {
+  width: 78%;
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes skeleton-appear {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .info-skeleton-header {
+    margin-bottom: 22px;
+  }
+
+  .info-skeleton-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .info-skeleton-item {
+    padding: 16px;
+  }
+
+  .skeleton-title {
+    width: 120px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+
+  .info-skeleton {
+    animation: none;
+  }
+}
