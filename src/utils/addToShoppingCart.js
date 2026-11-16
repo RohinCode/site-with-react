@@ -1,6 +1,11 @@
 import axios from "axios";
 
-export default async function addToShoppingCart(p, domain, setProduct) {
+export default async function addToShoppingCart(
+  p,
+  domain,
+  setProduct,
+  setIsAdded,
+) {
   const token = localStorage.getItem("rohinToken");
 
   if (!token) {
@@ -35,6 +40,11 @@ export default async function addToShoppingCart(p, domain, setProduct) {
         };
       });
     }
+
+    setIsAdded(true);
+    setTimeout(() => {
+      setIsAdded(false);
+    }, 3000);
 
     return true;
   } catch (error) {

@@ -176,8 +176,8 @@
   overflow-wrap: anywhere;
 }
 
-/* تعداد محصول */
-.editProduct .result-of-search-product .quantity-of-product {
+
+ .quantity-of-product {
   display: flex;
   width: 115px;
   flex-shrink: 0;
@@ -190,7 +190,7 @@
   border-radius: 9px;
 }
 
-.editProduct .result-of-search-product .quantity-of-product button {
+ .quantity-of-product button {
   background-color: var(--navy);
   outline: none;
   border: none;
@@ -203,12 +203,12 @@
   transition: 0.2s;
 }
 
-.editProduct .result-of-search-product .quantity-of-product button:hover {
+.quantity-of-product button:hover {
   background-color: var(--botton);
   transform: scale(1.05);
 }
 
-.editProduct .result-of-search-product .quantity-of-product p {
+ .quantity-of-product p {
   color: var(--background2);
   font-size: 15px;
   font-weight: bold;
@@ -258,7 +258,7 @@
     flex: 1;
   }
 
-  .editProduct .result-of-search-product .quantity-of-product {
+  .quantity-of-product {
     width: 100%;
     margin-top: 5px;
   }

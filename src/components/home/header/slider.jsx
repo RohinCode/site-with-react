@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 function Slider() {
   const [slideIndex, setSlideIndex] = useState(1);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 490);
 
   function changeImage(index) {
     setSlideIndex(index);
@@ -13,16 +12,7 @@ function Slider() {
       setSlideIndex((prev) => (prev === 6 ? 1 : prev + 1));
     }, 4000);
 
-    function checkWidth() {
-      setIsMobile(window.innerWidth <= 490);
-    }
-
-    window.addEventListener("resize", checkWidth);
-
-    return () => {
-      clearInterval(timer);
-      window.removeEventListener("resize", checkWidth);
-    };
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -34,15 +24,23 @@ function Slider() {
             className={`item ${slideIndex === index ? "show-it" : ""}`}
             id={`slide${index}`}
           >
-            <img
-              src={
-                isMobile
-                  ? `/images/header[2]${index}.webp`
-                  : `/images/header${index}.webp`
-              }
-              loading={index === 1 ? "eager" : "lazy"}
-              fetchPriority={index === 1 ? "high" : "auto"}
-            />
+            <picture>
+              <source
+                media="(max-width: 490px)"
+                srcSet={`/images/header[2]${index}.webp`}
+                width="1600"
+                height="827"
+              />
+
+              <img
+                src={`/images/header${index}.webp`}
+                width="1500"
+                height="505"
+                loading={index === 1 ? "eager" : "lazy"}
+                fetchPriority={index === 1 ? "high" : "auto"}
+                alt={`اسلاید ${index}`}
+              />
+            </picture>
           </div>
         ))}
       </div>

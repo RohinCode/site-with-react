@@ -7,17 +7,22 @@ import { config } from "../../../config.js";
 
 function Singup() {
   const { state } = useLocation();
+  const [err, setErr] = useState([]);
   const address = state?.address || "/user";
   const [sending, setSending] = useState(false);
-  const [account, setAccount] = useState({ name: "", password: "" });
+  const [account, setAccount] = useState({ name: "", password: "", email: "" });
   const schema = yup.object().shape({
     name: yup.string().required(" فیلد ایمیل الزامی می باشد "),
     password: yup.string().min(4, " پسورد باید حداقل چهار کاراکتر باشد "),
+    email: yup
+      .string()
+      .email("فرمت ایمیل صحیح نمی‌باشد")
+      .required("ایمیل نباید خالی باشد"),
   });
 
-   document.title = "ثبت‌نام";
+  document.title = "ثبت‌نام";
 
-   function handleChange({ currentTarget: input }) {
+  function handleChange({ currentTarget: input }) {
     setAccount((prevAccount) => ({
       ...prevAccount,
       [input.name]: input.value,
@@ -29,9 +34,10 @@ function Singup() {
       const result = await schema.validate(account, {
         abortEarly: false,
       });
+      setErr([]);
       return result;
     } catch (error) {
-      alert(error.errors);
+      setErr(error.errors);
     }
   }
 
@@ -58,7 +64,14 @@ function Singup() {
             placeholder="رمز خود را وارد کنید"
             onChange={handleChange}
           />
-          <input type="submit" value="ارسال" />
+
+          <div className={styles.errors}>
+            {err.map((error, index) => (
+              <p key={index}>{error}</p>
+            ))}
+          </div>
+
+          <input disabled={sending} type="submit" value="ارسال" />
         </form>
         <h4>
           اکانت دارید؟ <Link to="/login">وارد شوید</Link>
@@ -81,7 +94,7 @@ function Singup() {
         window.location = address;
         setSending(false);
       } catch (error) {
-        alert(error.response.data.message);
+        setErr([error.response.data.message]);
       }
     }
     setSending(false);

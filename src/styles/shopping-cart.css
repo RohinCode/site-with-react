@@ -103,24 +103,14 @@
 
 .Product-item div .left div i {
   margin: 0;
-
-  width: 40px;
-  height: 40px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 12px;
-
   cursor: pointer;
-
   transition: 0.2s;
 }
 
-.Product-item div .left div i:hover {
-  background: #f1f3f7;
-}
 
 .Product-item div .left .number span {
   min-width: 35px;
@@ -257,7 +247,7 @@
   border-radius: 50%;
 
   background: #eaf2ff;
-  color: var( --primary);
+  color: var(--primary);
 
   font-size: 24px;
 }
@@ -273,7 +263,7 @@
   margin: 0;
   padding-right: 22px;
 
-  color:var(--secondary);
+  color: var(--secondary);
 
   line-height: 2.2;
   font-size: 15px;
@@ -321,7 +311,6 @@
   }
 }
 
-
 #continueBtn {
   width: 80%;
   margin-top: 25px;
@@ -330,7 +319,7 @@
   border: none;
   border-radius: 10px;
 
-  background: var( --primary);
+  background: var(--primary);
   color: white;
 
   font-family: inherit;
@@ -350,7 +339,7 @@
 }
 
 #continueBtn:hover {
-  background:var(--botton);
+  background: var(--botton);
 }
 
 #continueBtn:active {
@@ -392,7 +381,7 @@
 
 .btn {
   padding: 10px;
-  background-color: var( --primary);
+  background-color: var(--primary);
   outline: none;
   border: none;
   border-radius: 6px;
@@ -555,7 +544,7 @@
 }
 
 .empty-cart-btn:hover {
-  background: var( --primary);
+  background: var(--primary);
   transform: translateY(-2px);
 }
 
@@ -581,4 +570,41 @@
 
 .order-notice ul {
   text-align: right;
+}
+
+.quantity-of-product {
+  display: flex;
+  width: 115px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+  padding: 6px;
+  background: #f1f5f9;
+  border-radius: 9px;
+}
+
+.quantity-of-product button {
+  background-color: var(--navy);
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 15px;
+  width: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 30px;
+  transition: 0.2s;
+}
+
+.quantity-of-product button:hover {
+  background-color: var(--botton);
+  transform: scale(1.05);
+}
+
+.quantity-of-product p {
+  color: var(--background2);
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
 }

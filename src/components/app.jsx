@@ -7,6 +7,7 @@ import ProtectByNotFound from "./protect/proucectByNotfuond";
 import SetTheme from "./admin/changeColors/setTheme";
 import axios from "axios";
 import { config } from "../../config";
+import Loading from "./loading/Loading";
 
 const Admin = lazy(() => import("./admin/admin"));
 const NotFound = lazy(() => import("./home/notFound"));
@@ -21,6 +22,8 @@ function App() {
   const [colors, setColors] = useState(
     () => localStorage.getItem("theme") || "blue",
   );
+  const [isReady, setIsReady] = useState(false);
+
   useEffect(() => {
     async function getReady() {
       try {
@@ -34,17 +37,20 @@ function App() {
         localStorage.setItem("theme", theme);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsReady(true);
       }
     }
 
     getReady();
   }, []);
 
+  
   return (
     <BrowserRouter>
       <SetTheme color={colors} />
 
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/singup" element={<Singup />} />

@@ -7,15 +7,16 @@ import { config } from "../../../config.js";
 
 function Login() {
   const { state } = useLocation();
+  const [err, setErr] = useState([]);
   const address = state?.address || "/user";
   const [sending, setSending] = useState(false);
   const [account, setAccount] = useState({ name: "", password: "" });
   const schema = yup.object().shape({
-    name: yup.string().required(" فیلد ایمیل الزامی می باشد "),
+    name: yup.string().required(" فیلد نام کاربری الزامی می باشد "),
     password: yup.string().min(4, " پسورد باید حداقل چهار کاراکتر باشد "),
   });
 
-   document.title = "ورود";
+  document.title = "ورود";
   function handleChange({ currentTarget: input }) {
     setAccount((prevAccount) => ({
       ...prevAccount,
@@ -28,9 +29,10 @@ function Login() {
       const result = await schema.validate(account, {
         abortEarly: false,
       });
+      setErr([]);
       return result;
     } catch (error) {
-      alert(error.errors);
+      setErr(error.errors);
     }
   }
 
@@ -53,6 +55,11 @@ function Login() {
             type="text"
             placeholder="رمز خود را وارد کنید"
           />
+          <div className={styles.errors}>
+            {err.map((error, index) => (
+              <p key={index}>{error}</p>
+            ))}
+          </div>
 
           <input disabled={sending} type="submit" value="ارسال" />
         </form>
@@ -78,7 +85,7 @@ function Login() {
         window.location = address;
         setSending(false);
       } catch (error) {
-        alert("ایمیل یا پسورد صحیح نمی باشد");
+        setErr(["ایمیل یا پسورد صحیح نمی باشد"]);
       }
     }
     setSending(false);

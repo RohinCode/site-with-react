@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { config } from "../.../../../../../config";
 import ShowUsers from "./showUser";
+import Loading from "../../loading/Loading";
 
 function GetAllUsers({ token }) {
   const [users, setUsers] = useState({});
@@ -27,14 +28,19 @@ function GetAllUsers({ token }) {
   return (
     <>
       {loading ? (
-        ""
+        <Loading />
       ) : (
         <>
           <h4 style={{ textAlign: "center" }}>مدیریت کاربران</h4>
 
           <div className="users-page">
             {users.map((user) => (
-              <ShowUsers key={user._id} user={user} getReady={getReady} token={token}/>
+              <ShowUsers
+                key={user._id}
+                user={user}
+                getReady={getReady}
+                token={token}
+              />
             ))}
           </div>
         </>

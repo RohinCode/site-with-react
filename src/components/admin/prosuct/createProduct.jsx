@@ -1,7 +1,7 @@
 import axios from "axios";
 import { config } from "../../../../config";
 
-function CreateProduct({token}) {
+function CreateProduct({ token }) {
   return (
     <>
       <div className="explain">
@@ -71,6 +71,12 @@ function CreateProduct({token}) {
           placeholder="کلیدهای میان‌بر برای سرچ رو وارد کنید"
         />
 
+        <input
+          name="percent"
+          type="number"
+          placeholder="درصد تخفیف را  وارد کنید"
+        />
+
         <textarea
           name="details"
           placeholder="جزئیات محصول را وارد کنید"
@@ -103,6 +109,7 @@ function CreateProduct({token}) {
   );
 
   async function handleSubmit(e) {
+    // e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const keywords = formData.get("keywords");
 
@@ -116,8 +123,6 @@ function CreateProduct({token}) {
       ),
     );
     try {
-      console.log(1);
-
       axios.defaults.headers.common["x-auth-token"] = token;
       const response = await axios.post(
         `${config.urlOfBackend}/api/product/createProduct`,
@@ -125,12 +130,8 @@ function CreateProduct({token}) {
       );
 
       console.log(response);
-      console.log(2);
-
-
     } catch (error) {
-      console.log(error);
-
+      console.log(error.response.data);
     }
   }
 }

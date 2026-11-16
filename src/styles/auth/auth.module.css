@@ -90,3 +90,33 @@
   color: var(--primary);
   text-decoration: underline;
 }
+
+.errors {
+  color: #dc3545;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 5px 2px 0;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  animation: errorShow 0.5s ease-in-out;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 8px;
+}
+
+.errors p {
+  margin: 0;
+}
+
+@keyframes errorShow {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

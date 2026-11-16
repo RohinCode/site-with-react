@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { config } from "../../../config";
+import Loading from "../loading/Loading";
+import priceToNumber from "../../utils/priceFormat";
 
 function Orders({ token }) {
   const [allOrders, settAllOrders] = useState([]);
@@ -35,7 +37,6 @@ function Orders({ token }) {
   const orders = allOrders.slice(start, end);
 
   async function getReady() {
-
     try {
       const response = await axios.get(
         `${config.urlOfBackend}/api/cart/Registered`,
@@ -59,7 +60,7 @@ function Orders({ token }) {
   return (
     <>
       {loading ? (
-        ""
+        <Loading />
       ) : (
         <section className="orders-page">
           <div className="orders-header">
@@ -84,7 +85,30 @@ function Orders({ token }) {
                     <h4>{product.productId.name}</h4>
 
                     <div className="product-details">
-                      <span>قیمت: {product.productId.price}</span>
+                      {product.productId.percent ? (
+                        <>
+                          <div className="percent-box">
+                            <p className="last-price">
+                              {priceToNumber(
+                                product.productId.price,
+                              ).toLocaleString("fa-IR")}
+                            </p>
+                          </div>
+                          <p style={{ display: "inline" }}>
+                            قیمت:{" "}
+                            {Number(
+                              product.productId.DiscountedPrice,
+                            ).toLocaleString("fa-IR")}
+                          </p>
+                        </>
+                      ) : (
+                        <span>
+                          قیمت:{" "}
+                          {Number(product.productId.price).toLocaleString(
+                            "fa-IR",
+                          )}
+                        </span>
+                      )}
                       <span>تعداد: {product.quantity}</span>
                     </div>
                   </div>

@@ -8,6 +8,7 @@ import Notice from "./notice";
 import IsEmpty from "./isEmpty";
 import Complated from "./complated";
 import Tip from "./tip";
+import ShoppingSkeleton from "../loading/shoppingSkeleton";
 
 function ShoppingBox({ token }) {
   const [shop, setShop] = useState({ products: [] });
@@ -15,29 +16,33 @@ function ShoppingBox({ token }) {
   const [showNotice, setShowNotice] = useState(false);
   const [tip, setTip] = useState(false);
   const [isComplated, setComplated] = useState(false);
- document.title = "سبد خرید";
-  useEffect(() => {
-    async function getCart() {
-      try {
-        axios.defaults.headers.common["x-auth-token"] = token;
+  document.title = "سبد خرید";
 
-        const response = await axios.get(
-          `${config.urlOfBackend}/api/cart/getProdoct`,
-        );
+  async function getCart() {
+    try {
+      axios.defaults.headers.common["x-auth-token"] = token;
 
-        setShop(response.data.data);
-      } catch (error) {
-        console.log(error.response?.data?.message || error.message);
-      }
-      setLoading(false);
+      const response = await axios.get(
+        `${config.urlOfBackend}/api/cart/getProdoct`,
+      );
+
+      setShop(response.data.data);
+    } catch (error) {
+      console.log(error.response?.data?.message || error.message);
     }
+    setLoading(false);
+  }
 
+  useEffect(() => {
     getCart();
   }, [token]);
 
   const totalProductsPrice = shop.products.reduce(
     (total, product) =>
-      total + priceToNumber(product.productId.price) * product.quantity,
+      product.productId.percent
+        ? total +
+          priceToNumber(product.productId.DiscountedPrice) * product.quantity
+        : total + priceToNumber(product.productId.price) * product.quantity,
     0,
   );
   const SHIPPING_COST = 50000;
@@ -46,106 +51,139 @@ function ShoppingBox({ token }) {
 
   return (
     <>
-      <main className="shoppnigMain">
-        {shop.products.length !== 0 ? (
-          <>
-            <div>
+      {isLoading ? (
+        <ShoppingSkeleton />
+      ) : (
+        <>
+          <main className="shoppnigMain">
+            {shop.products.length !== 0 ? (
               <>
-                {shop.products.map((product) => (
-                  <div key={product._id} className="Product-item">
-                    <img
-                      src={`${config.urlOfBackend}${product.productId.img}`}
-                      alt={`${config.urlOfBackend}${product.productId.img}`}
-                    />
+                <div>
+                  {shop.products.map((product) => (
+                    <div key={product._id} className="Product-item">
+                      <img
+                        src={`${config.urlOfBackend}${product.productId.img}`}
+                        alt={`${product.productId.img}`}
+                      />
 
-                    <div>
                       <div>
-                        <h3 style={{ marginBottom: "0", fontSize: "15px" }}>
-                          {product.productId.name}
-                        </h3>
+                        <div>
+                          <h3 style={{ marginBottom: "0", fontSize: "15px" }}>
+                            {product.productId.name}
+                          </h3>
 
-                        <p
-                          style={{
-                            fontSize: "11px",
-                            padding: "0 5px 0 0",
-                            marginTop: "5px",
-                            color: " #5c626e",
-                            fontWeight: "600",
-                          }}
-                        >
-                          {product.productId.details.replace(/<[^>]*>/g, "")}
-                        </p>
-                      </div>
-                      <div className="left">
-                        <div className="price">
-                          <p style={{ display: "inline" }}>
-                            {product.productId.price}
-                          </p>
-                          <span>تومان</span>
-                        </div>
-
-                        <div className="number">
-                          <span>{product.quantity}</span>
-
-                          <button
-                            onClick={(e) => deleteItem(e)}
+                          <p
                             style={{
-                              background: "white",
-                              border: "none",
-                              outline: "none",
-                              padding: "0",
+                              fontSize: "11px",
+                              padding: "0 5px 0 0",
+                              marginTop: "5px",
+                              color: " #5c626e",
+                              fontWeight: "600",
                             }}
-                            className="delete"
-                            data-product-id={`${product.productId._id}`}
                           >
-                            <i
-                              className="fa-solid fa-trash-can"
-                              style={{ fontSize: "16" }}
-                            ></i>
-                          </button>
+                            {product.productId.details.replace(/<[^>]*>/g, "")}
+                          </p>
+                        </div>
+                        <div className="left">
+                          <div className="price">
+                            {product.productId.percent ? (
+                              <>
+                                <div className="percent-box">
+                                  <p className="last-price">
+                                    {" "}
+                                    {Number(
+                                      product.productId.price,
+                                    ).toLocaleString("fa-IR")}
+                                  </p>
+                                  <div className="percent active">
+                                    {Number(
+                                      product.productId.percent,
+                                    ).toLocaleString("fa-IR")}
+                                    %
+                                  </div>
+                                </div>
+                                <p style={{ display: "inline" }}>
+                                  {Number(
+                                    product.productId.DiscountedPrice,
+                                  ).toLocaleString("fa-IR")}
+                                </p>
+                              </>
+                            ) : (
+                              <p style={{ display: "inline" }}>
+                                {Number(product.productId.price).toLocaleString(
+                                  "fa-IR",
+                                )}
+                              </p>
+                            )}
+                            <span>تومان</span>
+                          </div>
+
+                          <div className="quantity-of-product">
+                            <button
+                              onClick={() =>
+                                editQuantity(
+                                  "removeOneNumberToOrder",
+                                  product.productId._id,
+                                )
+                              }
+                            >
+                              <i className="fa-solid fa-minus"></i>
+                            </button>
+                            <p>{product.quantity}</p>
+                            <button
+                              onClick={() =>
+                                editQuantity(
+                                  "addOneNumberToOrder",
+                                  product.productId._id,
+                                )
+                              }
+                            >
+                              <i className="fa-solid fa-plus"></i>
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
+                  ))}
+                </div>
+
+                <div className="pay">
+                  <h4>جزئیات خرید</h4>
+
+                  <div className="price">
+                    <div>
+                      <p>مجموع قیمت کالاها</p>
+                      <span>{totalProductsPrice.toLocaleString("fa-IR")}</span>
+                    </div>
+
+                    <div>
+                      <p>هزینه‌ی ارسال</p>
+                      <span>{SHIPPING_COST.toLocaleString("fa-IR")}</span>
+                    </div>
+
+                    <div>
+                      <p>مجموع (به تومان)</p>
+                      <span>{totalPrice.toLocaleString("fa-IR")}</span>
+                    </div>
                   </div>
-                ))}
+
+                  <button onClick={continueFunction}>ادامه</button>
+                </div>
               </>
-            </div>
+            ) : (
+              <IsEmpty />
+            )}
+          </main>
 
-            <div className="pay">
-              <h4>جزئیات خرید</h4>
+          {showNotice && <Notice />}
 
-              <div className="price">
-                <div>
-                  <p>مجموع قیمت کالاها</p>
-                  <span>{totalProductsPrice.toLocaleString("fa-IR")}</span>
-                </div>
+          {tip && <Tip complated={complated} setTip={setTip} />}
 
-                <div>
-                  <p>هزینه‌ی ارسال</p>
-                  <span>{SHIPPING_COST.toLocaleString("fa-IR")}</span>
-                </div>
+          {isComplated && <Complated />}
 
-                <div>
-                  <p>مجموع (به تومان)</p>
-                  <span>{totalPrice.toLocaleString("fa-IR")}</span>
-                </div>
-              </div>
-
-              <button onClick={continueFunction}>ادامه</button>
-            </div>
-          </>
-        ) : (
-          <IsEmpty />
-        )}
-      </main>
-
-      {showNotice && <Notice />}
-
-      {tip && <Tip complated={complated} setTip={setTip} />}
-
-      {isComplated && <Complated />}
-
-      <FixedFooter active="shoopingBox" />
+          <FixedFooter active="shoopingBox" />
+        </>
+      )}
     </>
   );
 
@@ -172,32 +210,16 @@ function ShoppingBox({ token }) {
     setComplated(true);
   }
 
-  async function deleteItem(e) {
-    const productId = e.currentTarget.dataset.productId;
-
+  async function editQuantity(url, id) {
     try {
-      const response = await axios.delete(
-        `${config.urlOfBackend}/api/cart/delete`,
+      await axios.put(`${config.urlOfBackend}/api/cart/${url}`, {
+        productId: id,
+        cartId: shop._id,
+      });
 
-        {
-          data: {
-            productId,
-          },
-          headers: {
-            "x-auth-token": token,
-          },
-        },
-      );
-
-      axios.defaults.headers.common["x-auth-token"] = token;
-
-      const result = await axios.get(
-        `${config.urlOfBackend}/api/cart/getProdoct`,
-      );
-
-      setShop(result.data.data);
+      await getCart();
     } catch (error) {
-      console.log(error.response?.data.message);
+      console.log(error.response?.data?.message);
     }
   }
 }

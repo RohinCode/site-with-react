@@ -146,6 +146,40 @@
 .shopping-card .buttons .right .price {
   color: #3f3f3f;
   font-weight: bold;
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 20px;
+
+}
+
+ .percent-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.percent-box .last-price {
+  color: #777373;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: line-through;
+}
+
+.percent-box .percent {
+  color: white;
+  padding: 3px 5px;
+  font-size: 14px;
+  margin-right:10px;
+  border-radius: 5px;
+  background: transparent;
+
+
+}
+
+.percent-box .active {
+  background: #e74c3c;
+
 }
 
 .price span {
@@ -163,7 +197,7 @@
   margin-left: 5px;
   align-items: center;
   justify-content: space-between;
-  background-color: var( --primary);
+  background-color: var(--primary);
   width: 20px;
   padding: 8px 12px;
   border-radius: 20px;
@@ -182,6 +216,8 @@
 
 .extend-btn span {
   color: white;
+}
+a:has(.extend-btn) {
   text-decoration: none;
 }
 
@@ -278,7 +314,7 @@
   display: block;
   width: 70px;
   height: 4px;
-  background:var(--background2);
+  background: var(--background2);
   border-radius: 20px;
   margin: 12px auto 0;
 }
@@ -309,7 +345,7 @@
 
 .search-box:focus-within {
   width: 860px;
-  border-color:var(--primary);
+  border-color: var(--primary);
   transform: translateY(-2px);
   box-shadow:
     0 12px 30px rgba(43, 44, 46, 0.14),
@@ -349,7 +385,7 @@
   padding: 0;
   box-sizing: border-box;
   color: white;
-  background:var(--primary);
+  background: var(--primary);
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
@@ -408,7 +444,7 @@
 }
 
 .show-more:hover {
-  background:var(--botton);
+  background: var(--botton);
   transform: translateY(-3px);
   box-shadow: 0 9px 22px rgba(49, 50, 53, 0.28);
 }
@@ -417,9 +453,6 @@
   transform: translateY(0) scale(0.96);
   box-shadow: 0 4px 10px rgba(26, 26, 27, 0.18);
 }
-
-
-
 
 .cancel-search {
   margin-right: 10px;
@@ -505,7 +538,7 @@
   display: block;
   width: 55px;
   height: 4px;
-  background:var(--primary);
+  background: var(--primary);
   border-radius: 20px;
   margin: 12px auto 0;
 }
@@ -535,7 +568,7 @@
 /* هاور کارت */
 .category .row > div:hover {
   transform: translateY(-8px);
-  border-color:var(--primary);
+  border-color: var(--primary);
   box-shadow: 0 15px 35px rgba(11, 27, 52, 0.12);
 }
 

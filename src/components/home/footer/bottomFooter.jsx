@@ -53,7 +53,7 @@ function BottomFooter() {
                 <i className="fab fa-instagram"></i>
               </a>
               <a href="https://t.me/RohinCodeBot">
-                <i class="fa-solid fa-comment"></i>
+                <i className="fa-solid fa-comment"></i>
               </a>
               <a href="https://t.me/RohinCode">
                 <i className="fa-brands fa-telegram"></i>
@@ -63,7 +63,7 @@ function BottomFooter() {
         </div>
         <div className="footer-bottom">
           © تمامی حقوق برای فروشگاه محفوظ است. <br />
-          نسخـه‌ی 1.0.0
+          نسخـه‌ی 1.0.2
         </div>
       </div>
     </>

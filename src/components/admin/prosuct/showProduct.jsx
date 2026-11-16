@@ -60,7 +60,7 @@ function ShowProduct({ getReady, token, product, isEmpty }) {
               className={`${contentEditable ? "editable" : ""}`}
               contentEditable={contentEditable}
             >
-              {product.price}
+              {Number(product.price).toLocaleString("fa-IR")}
             </h4>
             <p
               onInput={(e) => editInfo(e, "details")}
@@ -101,10 +101,13 @@ function ShowProduct({ getReady, token, product, isEmpty }) {
                 ویرایش
               </button>
 
-              {/* <button className="delete-btn">
+              <button
+                className="delete-btn"
+                onClick={() => deleteProduct(product._id)}
+              >
                 <i className="fa-solid fa-trash"></i>
                 حذف
-              </button> */}
+              </button>
             </div>
           </div>
         </div>
@@ -155,6 +158,25 @@ function ShowProduct({ getReady, token, product, isEmpty }) {
     } catch (error) {
       console.log(error.response.data.message);
 
+      console.log(error);
+    }
+  }
+
+  async function deleteProduct(productId) {
+    try {
+      axios.defaults.headers.common["x-auth-token"] = token;
+      const response = await axios.delete(
+        `${config.urlOfBackend}/api/product/delete-product`,
+        {
+          data: {
+            productId,
+          },
+        },
+      );
+
+      getReady();
+      console.log(response);
+    } catch (error) {
       console.log(error);
     }
   }

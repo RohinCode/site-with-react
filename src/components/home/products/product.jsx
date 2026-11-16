@@ -9,6 +9,8 @@ import LoadingProductPage from "../../loading/loadingPriductPage";
 import { config } from "../../../../config";
 import formatMessageDate from "../../../utils/dateFormat";
 import randomColor from "../../../utils/randomColor";
+import star from "../../../utils/star";
+import Star from "../../../utils/star";
 function Product() {
   const { id } = useParams();
   const [sending, setSending] = useState(false);
@@ -17,6 +19,7 @@ function Product() {
   const [text, setText] = useState("");
   const [display, setDisplay] = useState("none");
   const [loading, setLoading] = useState(true);
+  const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
     async function getProduct() {
@@ -44,12 +47,17 @@ function Product() {
         <>
           <main className="product-page">
             <div className="product-image">
-              <img src={`${config.urlOfBackend}${Product.img}`} alt={Product.name} />
+              <img
+                src={`${config.urlOfBackend}${Product.img}`}
+                alt={Product.name}
+              />
             </div>
 
             <div className="product-info">
               <h1 className="product-title">{Product.name}</h1>
-              <div className="product-rating"></div>
+              <div className="product-rating">
+                <Star star={Product.star} />
+              </div>
 
               <div
                 className="product-details"
@@ -59,9 +67,33 @@ function Product() {
                     : "این محصول جزئیات ندارد",
                 }}
               />
+
+              {Product.percent ? (
+                <>
+                  <div className="percent-box">
+                    <p className="last-price">
+                      {" "}
+                      {Number(Product.price).toLocaleString("fa-IR")}
+                    </p>
+                    <div className="percent active">{Number(Product.percent).toLocaleString("fa-IR")}%</div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="percent-box">
+                    <p className="last-price">‌</p>
+                    <div className="percent">‌</div>
+                  </div>
+                </>
+              )}
+
               <div className="product-price">
                 <span>
-                  {priceToNumber(Product.price).toLocaleString("fa-IR")}
+                  {Product.percent
+                    ? priceToNumber(Product.DiscountedPrice).toLocaleString(
+                        "fa-IR",
+                      )
+                    : priceToNumber(Product.price).toLocaleString("fa-IR")}
                 </span>
                 <span> تومان</span>
               </div>
@@ -74,8 +106,9 @@ function Product() {
                   onClick={async () => {
                     const success = await addToShoppingCart(
                       Product,
-                      domain,
+                      config.urlOfBackend,
                       setProduct,
+                      setIsAdded,
                     );
 
                     if (success) {
@@ -86,7 +119,7 @@ function Product() {
                     }
                   }}
                 >
-                  افزودن به سبد خرید
+                  {isAdded ? "ثبت شد" : " افزودن به سبد خرید"}
                 </button>
               </div>
 
@@ -207,8 +240,6 @@ function Product() {
 
     return number;
   }
-
-
 }
 
 export default Product;

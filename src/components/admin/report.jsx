@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { config } from "../../../config";
 import axios from "axios";
+import Loading from "../loading/Loading";
 import {
   Chart as ChartJS,
   DoughnutController,
@@ -120,19 +121,16 @@ function Report({ token }) {
       },
     });
 
-    // پاک‌سازی نمودار هنگام حذف کامپوننت
     return () => {
       chartInstance.current?.destroy();
       chartInstance.current = null;
     };
   }, [reports]);
 
-  // وضعیت دریافت اطلاعات
   if (loading) {
-    return <p>در حال دریافت گزارش‌ها...</p>;
+    return <Loading />;
   }
 
-  // گزارش خالی
   if (!reports.length) {
     return (
       <div className="empty-reports">
